@@ -8,10 +8,27 @@ html {
   }
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
-
+h1,
+h2,
+h3,
+h4 {
+  font-family: 'Clash Display', sans-serif;
+}
+p,
+span,
+a,
+label,
+input,
+button {
+  font-family: 'Satoshi', sans-serif;
+}
 html {
   position: relative;
   min-height: 100%;
@@ -19,4 +36,23 @@ html {
 
 body {
   margin-bottom: 60px;
+}
+
+/* HOMEPAGE */
+
+/* HERO */
+.hero {
+  background: url('/img/hero.png') no-repeat center center;
+  height: 50vh;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  border-radius: 25px;
+  padding-bottom: 2rem;
+  filter: grayscale(70%);
+  max-width: 1140px;
+}
+.hero .text-content {
+  font-size: 2rem;
+  color: white;
 }

@@ -1,6 +1,38 @@
-
 @{
     ViewData["Title"] = "Prodotti";
 }
 <h1>@ViewData["Title"]</h1>
-   <h2>sono la index del controller Item tests</h2> 
+<h2>sono la index del controller Item test</h2>
+<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+    Reiciendis ipsa veritatis atque suscipit tempore, ducimus explicabo delectus accusantium animi,
+    adipisci exercitationem impedit! Autem ad rem et iure laboriosam magnam numquam?</p>
+<div class="container max-width-1200">
+    <div class="row d-flex flex-wrap max-width-1200 w-100">
+        @for (int i = 0; i < 10; i++)
+        {
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-2">
+                <div class="card p-2">
+                    <div class="box-img"> <img src="~/img/prodotto-test.png" alt="immagine prodotto" class="card-img mb-2">
+                    </div>
+                    <div class="box-content">
+                        <h3 class="text-capitalize">categoria</h3>
+                        <h4 class="text-capitalize"> titolo prodotto</h4>
+                        <span class="mb-0">prezzo</span>
+                        @if (true)
+                        {
+                            <span class="text-decoration-line-through">
+                                prezzo scontato
+                            </span>
+                        }
+                        <button class="d-block mt-2 bg-primary text-white text-capitalize rounded">acquista ora/dettaglio
+                            prodotto</button>
+                    </div>
+
+                </div>
+            </div>
+        }
+
+
+    </div>
+</div>
+</div>
