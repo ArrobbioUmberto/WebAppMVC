@@ -2,8 +2,18 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.ListenAnyIP(5193); // HTTP su tutte le interfacce
+    // options.ListenAnyIP(7274, listenOptions =>
+    // {
+    //     listenOptions.UseHttps(); // HTTPS su tutte le interfacce
+    // });
+    options.Listen(System.Net.IPAddress.Parse("192.168.1.2"), 7275); // HTTP sull'IP locale
+});
 
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -13,15 +23,20 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
+
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.MapControllerRoute(
+name: "detail",
+pattern: "{controller=Item}/{action=Detail}/{id?}");
 
 app.Run();
