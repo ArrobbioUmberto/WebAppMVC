@@ -7,7 +7,12 @@ html {
     font-size: 16px;
   }
 }
-
+:root {
+  --color-primary: #b1b2f9;
+  --color-secondary: #c5d1fb;
+  --color-tertiary: #eff1fe;
+  --color-text: #1f1d49;
+}
 .btn:focus,
 .btn:active:focus,
 .btn-link.nav-link:focus,
@@ -37,6 +42,12 @@ html {
 body {
   margin-bottom: 60px;
 }
+.fa-star {
+  content: '\f005';
+  color: yellow;
+  font-family: 'Font Awesome 6 Free';
+  font-size: 1rem;
+}
 
 /* HOMEPAGE */
 
@@ -54,5 +65,16 @@ body {
 }
 .hero .text-content {
   font-size: 2rem;
-  color: white;
+  color: var(--color-tertiary);
+}
+
+/* PAgina prodotti  */
+
+.card {
+  background-color: var(--color-secondary);
+}
+.card h3,
+.card h4 {
+  color: var(--color-text);
+  font-weight: 700;
 }

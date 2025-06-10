@@ -13,6 +13,18 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\arro9\\Desktop\\WebAppMVC\\wwwroot\\img\\hero.png",
+      "PackagePath": "staticwebassets\\img\\hero.png"
+    },
+    {
+      "Id": "C:\\Users\\arro9\\Desktop\\WebAppMVC\\wwwroot\\img\\logo.webp",
+      "PackagePath": "staticwebassets\\img\\logo.webp"
+    },
+    {
+      "Id": "C:\\Users\\arro9\\Desktop\\WebAppMVC\\wwwroot\\img\\prodotto-test.png",
+      "PackagePath": "staticwebassets\\img\\prodotto-test.png"
+    },
+    {
       "Id": "C:\\Users\\arro9\\Desktop\\WebAppMVC\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

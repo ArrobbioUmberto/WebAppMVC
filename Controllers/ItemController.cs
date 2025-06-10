@@ -5,6 +5,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using WebAppMVC.Models;
+using WebAppMVC.Models.Services.Application;
 
 namespace WebAppMVC.Controllers
 {
@@ -19,7 +21,9 @@ namespace WebAppMVC.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var items = new ItemServices();
+            List<ItemViewModel> itemlist = items.GetItems();
+            return View(itemlist);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
