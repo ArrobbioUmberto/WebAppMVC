@@ -19,7 +19,7 @@
                         <h3 class="text-capitalize">@item.Category</h3>
                         <h4 class="text-capitalize">@item.ProductName</h4>
 
-                        @if (@item.Discount.Amount > 0)
+                        @if (@item.Discount.Amount < @item.FullPrice.Amount && @item.Discount.Amount > 0 )
                         {
                             <span class="text-primary">
                                 @(item.FullPrice.Amount - item.Discount.Amount)
