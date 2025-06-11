@@ -5,6 +5,13 @@ namespace WebAppMVC.Models.Services.Application
 {
     public class ItemServices
     {
+        public ItemViewModel GetItem(int id)
+        {
+            var itemDetail = GetItems(); ;
+
+            return itemDetail.FirstOrDefault(item => item.Id == id) ?? new ItemViewModel();
+        }
+
         public List<ItemViewModel> GetItems()
         {
             var itemList = new List<ItemViewModel>();
@@ -16,6 +23,7 @@ namespace WebAppMVC.Models.Services.Application
                     Id = i,
                     Category = $"Categoria {randomicNumber.Next(1, 5)}",
                     ProductName = $"Prodotto {i}",
+                    Brand = $"Brand {i}",
                     Description = $"Descrizione del prodotto {i}",
                     ProductImageString = $"/img/prodotto-test.png",
                     Rating = randomicNumber.Next(1, 6),

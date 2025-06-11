@@ -78,3 +78,21 @@ body {
   color: var(--color-text);
   font-weight: 700;
 }
+
+/* DETTAGLIO PRODOTTO */
+.product-detail .col-4 {
+  background-color: var(--color-primary);
+  border-radius: 25px;
+  padding: 1rem;
+  height: max-content;
+}
+
+/* CAROSELLO PRODOTTI */
+
+.carousel-custom {
+  max-width: 1320px;
+  overflow-x: scroll;
+  display: flex;
+  flex-wrap: nowrap;
+  margin: 0 auto;
+}

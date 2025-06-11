@@ -31,9 +31,21 @@ namespace WebAppMVC.Controllers
         {
             return View("Error!");
         }
-        public IActionResult Detail(string id)
+        public IActionResult Detail(int id)
         {
-            return Content($"Sono nella pagina dettaglio con id uguale a {id}");
+            var item = new ItemServices();
+            ItemViewModel itemDetail = item.GetItem(id);
+            List<ItemViewModel> allItems = item.GetItems();
+            ViewData["Title"] = itemDetail.ProductName;
+            var relatedProduct = allItems
+                .Where(i => i.Id != id && i.Category == itemDetail.Category)
+                .ToList();
+            var allItemData = new ItemDetailModel
+            {
+                Product = itemDetail,
+                Related = relatedProduct
+            };
+            return View(allItemData);
         }
     }
 }

@@ -1,0 +1,74 @@
+
+@model ItemDetailModel
+
+<div class="container product-detail">
+    <div class="row ">
+        <div class="col-8 d-flex flex-column gap-2">
+            <img src="~/img/prodotto-test.png" alt="immagine prodotto" class="img-fluid">
+            <p>@Model.Product.Description</p>
+        </div>
+        <div class="col-4">
+            <h1>@Model.Product.ProductName</h1>
+            <h2>@Model.Product.Brand</h2>
+            <div class="price">
+                        @if (@Model.Product.Discount.Amount > 0 && @Model.Product.Discount.Amount < @Model.Product.FullPrice.Amount)
+                        {
+                            <span class="text-primary">
+                                @(Model.Product.FullPrice.Amount - Model.Product.Discount.Amount)
+                            </span>
+                            <span class="text-decoration-line-through">
+                                @Model.Product.FullPrice
+                            </span>
+                            
+                        }
+                        else
+                        {
+                            <span class="mb-0"> @Model.Product.FullPrice</span>
+                        }
+                         <p>
+                            @for(int i= 0; i <5; i++){
+                            if (@Model.Product.Rating >= i)
+                            {
+                                <i class="fa-solid fa-star"></i>
+                            }
+                            else
+                            {
+                                <i class="fa-regular fa-star"></i>
+                            }
+                        }
+                       </p>
+            </div>
+            <div class="add-to-cart mt-2">
+                <button class="btn btn-primary text-capitalize rounded">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    Aggiungi al carrello
+                </button>
+            </div>
+            <div class="bullet-points">
+                <ul>
+                    <li><i class="fa-solid fa-truck"></i> <span class="text-bullet-point">Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia quia officiis iure sapiente</span></li>
+                    <li><i class="fa-solid fa-truck"></i> <span class="text-bullet-point">Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia quia officiis iure sapiente</span></li>
+                    <li><i class="fa-solid fa-truck"></i> <span class="text-bullet-point">Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia quia officiis iure sapiente</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <h2>Prodotti correlati</h2>
+     <div class="row carousel-custom">
+        @foreach (var related in Model.Related)
+        {
+            <div class="col-3">
+                <div class="card">
+                    <img src="@related.ProductImageString" class="card-img-top" alt="@related.ProductName">
+                    <div class="card-body">
+                        <h5 class="card-title">@related.ProductName</h5>
+                        <p class="card-text">@related.Category</p>
+                        <a href="@Url.Action("Detail", "Item", new { id = related.Id })" class="btn btn-sm btn-primary">Vedi</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
