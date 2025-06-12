@@ -7,7 +7,9 @@ namespace WebAppMVC.Models.Value
 {
     public class Money
     {
+
         public decimal Amount { get; set; }
+        public Money() { }
         public Money(decimal amount)
         {
             if (amount < 0)

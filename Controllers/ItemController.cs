@@ -12,18 +12,18 @@ namespace WebAppMVC.Controllers
 {
     public class ItemController : Controller
     {
-        private readonly ILogger<ItemController> _logger;
 
-        public ItemController(ILogger<ItemController> logger)
+        private readonly IItemServices itemServices;
+
+        public ItemController(IItemServices itemServices)
         {
-            _logger = logger;
+            this.itemServices = itemServices;
         }
 
         public IActionResult Index()
         {
-            var items = new ItemServices();
-            List<ItemViewModel> itemlist = items.GetItems();
-            return View(itemlist);
+            var items = itemServices.GetItems();  // ora prende i dati dal DB!
+            return View(items);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -33,9 +33,8 @@ namespace WebAppMVC.Controllers
         }
         public IActionResult Detail(int id)
         {
-            var item = new ItemServices();
-            ItemViewModel itemDetail = item.GetItem(id);
-            List<ItemViewModel> allItems = item.GetItems();
+            var itemDetail = itemServices.GetItem(id);
+            var allItems = itemServices.GetItems();
             ViewData["Title"] = itemDetail.ProductName;
             var relatedProduct = allItems
                 .Where(i => i.Id != id && i.Category == itemDetail.Category)

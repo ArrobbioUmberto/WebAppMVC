@@ -1,38 +1,56 @@
 using System;
+using Microsoft.EntityFrameworkCore;
+using WebAppMVC.Data;
 using WebAppMVC.Models.Value;
 
 namespace WebAppMVC.Models.Services.Application
 {
-    public class ItemServices
+    public class ItemServices : IItemServices
     {
+        private readonly ShopContext _context;
+
+        public ItemServices(ShopContext context)
+        {
+            _context = context;
+        }
         public ItemViewModel GetItem(int id)
         {
-            var itemDetail = GetItems(); ;
-
-            return itemDetail.FirstOrDefault(item => item.Id == id) ?? new ItemViewModel();
+            return _context.Products
+                .AsNoTracking()
+                .Select(item => new ItemViewModel
+                {
+                    Id = item.Id,
+                    ProductName = item.ProductName,
+                    Category = item.Category,
+                    Brand = item.Brand,
+                    Description = item.Description,
+                    ProductImageString = item.ProductImageString,
+                    Rating = item.Rating,
+                    FullPrice = new Money(item.FullPrice.Amount),
+                    Discount = new Money(item.Discount.Amount)
+                })
+                .FirstOrDefault(i => i.Id == id) ?? new ItemViewModel();
         }
+
+
 
         public List<ItemViewModel> GetItems()
         {
-            var itemList = new List<ItemViewModel>();
-            var randomicNumber = new Random();
-            for (int i = 1; i < 21; i++)
-            {
-                var item = new ItemViewModel
-                {
-                    Id = i,
-                    Category = $"Categoria {randomicNumber.Next(1, 5)}",
-                    ProductName = $"Prodotto {i}",
-                    Brand = $"Brand {i}",
-                    Description = $"Descrizione del prodotto {i}",
-                    ProductImageString = $"/img/prodotto-test.png",
-                    Rating = randomicNumber.Next(1, 6),
-                    Discount = randomicNumber.Next(0, 2) == 0 ? new Money(0.00m) : new Money(randomicNumber.Next(1, 100)),
-                    FullPrice = new Money(randomicNumber.Next(10, 500))
-                };
-                itemList.Add(item);
-            }
-            return itemList;
+            return _context.Products
+                 .AsNoTracking()
+                 .Select(item => new ItemViewModel
+                 {
+                     Id = item.Id,
+                     ProductName = item.ProductName,
+                     Category = item.Category,
+                     Brand = item.Brand,
+                     Description = item.Description,
+                     ProductImageString = item.ProductImageString,
+                     Rating = item.Rating,
+                     FullPrice = new Money(item.FullPrice.Amount),
+                     Discount = new Money(item.Discount.Amount)
+                 })
+                 .ToList();
         }
     }
 }
