@@ -10,6 +10,7 @@ namespace WebAppMVC.Models
     {
         public int Id { get; set; }
         public string Category { get; set; } = string.Empty;
+        public int CategoryId { get; set; } = int.MinValue;
         public string ProductName { get; set; } = string.Empty;
         public string ProductImageString { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;

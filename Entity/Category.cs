@@ -9,10 +9,11 @@ namespace WebAppMVC.Entity
 {
     public class Category
     {
-        public int CategoryId { get; set; }
+        public int Id { get; set; }
         [Required]
         public string CategoryName { get; set; } = string.Empty;
         [Required]
         public string Description { get; set; } = string.Empty;
+        public List<Item> Products { get; set; } = new(); // Navigation property
     }
 }

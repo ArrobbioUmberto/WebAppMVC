@@ -1,0 +1,25 @@
+@model WebAppMVC.Models.CategoryDetailViewModel
+@{
+    ViewData["Title"] = "Dettaglio Categoria";
+}
+
+
+<div class="container">
+
+    <div class="row">
+        @foreach (var product in Model.Products)
+        {
+            <div class="col-6 col-md-3">
+                <div class="card">
+                    <img src="@product.ProductImageString" class="card-img-top" alt="@product.ProductName">
+                    <div class="card-body">
+                        <h5 class="card-title">@product.ProductName</h5>
+                        <p class="card-text">@product.Category</p>
+                        <a href="@Url.Action("Detail", "Item", new { id = product.Id })"
+                            class="btn btn-sm btn-primary">Vedi</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

@@ -21,13 +21,14 @@ namespace WebAppMVC.Models.Services.Application
                 {
                     Id = item.Id,
                     ProductName = item.ProductName,
-                    Category = item.Category,
+                    Category = item.Category.CategoryName,
                     Brand = item.Brand,
                     Description = item.Description,
                     ProductImageString = item.ProductImageString,
                     Rating = item.Rating,
                     FullPrice = new Money(item.FullPrice.Amount),
-                    Discount = new Money(item.Discount.Amount)
+                    Discount = new Money(item.Discount.Amount),
+                    CategoryId = item.CategoryId
                 })
                 .FirstOrDefault(i => i.Id == id) ?? new ItemViewModel();
         }
@@ -42,13 +43,14 @@ namespace WebAppMVC.Models.Services.Application
                  {
                      Id = item.Id,
                      ProductName = item.ProductName,
-                     Category = item.Category,
+                     Category = item.Category.CategoryName,
                      Brand = item.Brand,
                      Description = item.Description,
                      ProductImageString = item.ProductImageString,
                      Rating = item.Rating,
                      FullPrice = new Money(item.FullPrice.Amount),
-                     Discount = new Money(item.Discount.Amount)
+                     Discount = new Money(item.Discount.Amount),
+                     CategoryId = item.CategoryId
                  })
                  .ToList();
         }

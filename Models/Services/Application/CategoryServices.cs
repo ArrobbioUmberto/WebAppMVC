@@ -22,7 +22,7 @@ namespace WebAppMVC.Models.Services.Application
                 .AsNoTracking()
                 .Select(category => new CategoryViewModel
                 {
-                    Id = category.CategoryId,
+                    Id = category.Id,
                     CategoryName = category.CategoryName,
                     Description = category.Description
                 })
@@ -34,7 +34,7 @@ namespace WebAppMVC.Models.Services.Application
                 .AsNoTracking()
                 .Select(category => new CategoryViewModel
                 {
-                    Id = category.CategoryId,
+                    Id = category.Id,
                     CategoryName = category.CategoryName,
                     Description = category.Description
                 })

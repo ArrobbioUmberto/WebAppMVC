@@ -11,8 +11,6 @@ namespace WebAppMVC.Entity
     {
         public int Id { get; set; }
         [Required]
-        public string Category { get; private set; } = string.Empty;
-        [Required]
         public string ProductName { get; private set; } = string.Empty;
         [Required]
         public string ProductImageString { get; private set; } = string.Empty;
@@ -26,5 +24,8 @@ namespace WebAppMVC.Entity
         public Money Discount { get; private set; } = new Money(0);
         [Required]
         public Money FullPrice { get; private set; } = new Money(0);
+
+        public int CategoryId { get; set; } // Foreign Key
+        public Category Category { get; set; } = null!; // Navigation property
     }
 }
