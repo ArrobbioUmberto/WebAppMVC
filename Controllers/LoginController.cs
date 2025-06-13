@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using WebAppMVC.Entity;
 using WebAppMVC.Models.Services.Application;
 
 
@@ -21,9 +22,9 @@ namespace WebAppMVC.Controllers
             return View();
         }
 
-        [HttpPost]
+        [HttpPost("/login")]
         [ValidateAntiForgeryToken]
-        public IActionResult Login(LoginViewModel model)
+        public IActionResult Login(Users model)
         {
             var registeredUsers = userServices.GetRegisteredUsers();
             var user = registeredUsers
@@ -37,7 +38,7 @@ namespace WebAppMVC.Controllers
             ModelState.AddModelError("", "Username o password errati.");
             return View(model);
         }
-        [HttpGet("/riepilogo")]
+        [HttpGet]
         public IActionResult UserSummary()
         {
 
