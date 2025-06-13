@@ -1,6 +1,17 @@
+using Microsoft.EntityFrameworkCore;
+using WebAppMVC.Data;
+using WebAppMVC.Models.Services.Application;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddTransient<IItemServices, ItemServices>();
+builder.Services.AddTransient<ICategoryServices, CategoryServices>();
+builder.Services.AddDbContext<ShopContext>(options =>
+{
+    options.UseSqlServer("QUI DEVE ESSERE INSERITO IL CONNECTION STRING");
+});
+
 builder.Services.AddControllersWithViews();
 builder.WebHost.ConfigureKestrel(options =>
 {
