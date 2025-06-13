@@ -3,11 +3,11 @@
 
 <div class="container product-detail">
     <div class="row ">
-        <div class="col-8 d-flex flex-column gap-2">
-            <img src="@Model.Product.ProductImageString" alt="immagine prodotto" class="img-fluid">
+        <div class="col-12 col-md-8 d-flex flex-column gap-2">
+            <img src="@Model.Product.ProductImageString" alt="immagine prodotto" class="img-fluid rounded">
             <p>@Model.Product.Description</p>
         </div>
-        <div class="col-4">
+        <div class="col-12 col-md-4 item-detail">
             <h1>@Model.Product.ProductName</h1>
             <h2>@Model.Product.Brand</h2>
             <div class="price">
@@ -59,7 +59,7 @@
      <div class="row carousel-custom">
         @foreach (var related in Model.Related)
         {
-            <div class="col-3">
+            <div class="col-6 col-md-3">
                 <div class="card">
                     <img src="@related.ProductImageString" class="card-img-top" alt="@related.ProductName">
                     <div class="card-body">

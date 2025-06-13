@@ -7,6 +7,7 @@ namespace WebAppMVC.Data
     public class ShopContext : DbContext
     {
         public DbSet<Item> Products { get; set; }
+        public DbSet<Category> Category { get; set; }
 
         public ShopContext(DbContextOptions options) : base(options)
         {
