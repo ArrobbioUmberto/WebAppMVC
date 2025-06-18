@@ -1,1 +1,36 @@
-<h2>Benvenuto, @TempData["Username"]!</h2>
+@using WebAppMVC.Entity
+@model Users
+@{
+    ViewData["Title"] = "User-summary";
+}
+
+
+<div class="container">
+    <div class="row d-flex flex-wrap">
+
+        <div class="col-12">
+            <h2>Benvenuto, @Model.Username !</h2>
+
+            <div class="user-list-detail">
+                <h3>Dettagli Utente</h3>
+                <p><strong>Username:@Model.Username</strong>
+                <p><strong>Nome:@Model.FirstName</strong>
+                <p><strong>Cognome:@Model.LastName</strong>
+                <p><strong>Email:@Model.Email</strong>
+            </div>
+        </div>
+        @if (string.Equals(@Model.RoleId, 1))
+        {
+            <div class="col-12">
+                <button class="btn-primary rounded"><a class="text-white text-decoration-none " href="/create/product">Crea
+                        nuovo
+                        prodotto</a></button>
+                <button class="btn-primary rounded">Crea nuova categoria</button>
+            </div>
+        }
+
+
+    </div>
+
+</div>
+</div>

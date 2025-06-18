@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var username = Context.Session.GetString("Username");
+}
+
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -45,10 +50,19 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Category"
                                 asp-action="Index">Categorie</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Login"
-                                asp-action="Index">Login</a>
-                        </li>
+                        @if (string.IsNullOrEmpty(username))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Login"
+                                    asp-action="Index">Login</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Logout" asp-action="">Logout</a>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>

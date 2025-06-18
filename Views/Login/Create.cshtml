@@ -1,0 +1,30 @@
+@{
+    ViewData["Title"] = "Create User";
+}
+@using WebAppMVC.Entity
+@model Users
+<h1>Registrati per avere ulteriori vantaggi</h1>
+<h3>Compila il form con i dati richiesti</h3>
+<form asp-action="Create" asp-controller="Login" method="post" class="d-flex flex-column gap-2 col-12 col-md-6 mt-5">
+
+    <div class="checbox-admin">
+        <label for="IsAdmin">Admin</label>
+        <input type="checkbox" name="IsAdmin">
+    </div>
+    <label asp-for="FirstName" class="form-label">Nome</label>
+    <input type=" text" asp-for="FirstName" placeholder="Nome" class="form-control" />
+    <span asp-validation-for="FirstName" class="text-danger"></span>
+    <label asp-for="LastName" class="form-label">Cognome</label>
+    <input type="text" asp-for="LastName" placeholder="Cognome" class="form-control" />
+    <span asp-validation-for="LastName" class="text-danger"></span>
+    <label asp-for="Username" class="form-label">Username</label>
+    <input type="text" asp-for="Username" placeholder="Username" class="form-control" />
+    <span asp-validation-for="Username" class="text-danger"></span>
+    <label asp-for="Password" class="form-label">Password</label>
+    <input type="password" asp-for="Password" placeholder="Password" class="form-control" />
+    <span asp-validation-for="Password" class="text-danger"></span>
+    <label asp-for="Email" class="form-label">Email</label>
+    <input type="emial" asp-for="Email" placeholder="Email" class="form-control" />
+    <span asp-validation-for="Email" class="text-danger"></span>
+    <button type="submit">Registrati</button>
+</form>

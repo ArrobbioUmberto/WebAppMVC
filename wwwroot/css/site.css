@@ -99,3 +99,14 @@ body {
 .carousel-custom .card-body .card-title {
   min-height: 70px;
 }
+
+/* SEZIONE CREATE USER  */
+
+.checbox-admin {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  gap: 1rem;
+}

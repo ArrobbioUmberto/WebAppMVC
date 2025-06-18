@@ -11,19 +11,19 @@ namespace WebAppMVC.Entity
     {
         public int Id { get; set; }
         [Required]
-        public string ProductName { get; private set; } = string.Empty;
+        public string ProductName { get; set; } = string.Empty;
         [Required]
-        public string ProductImageString { get; private set; } = string.Empty;
+        public string ProductImageString { get; set; } = string.Empty;
         [Required]
-        public string Description { get; private set; } = string.Empty;
+        public string Description { get; set; } = string.Empty;
 
-        public int Rating { get; private set; }
+        public int Rating { get; set; }
         [Required]
-        public string Brand { get; private set; } = string.Empty;
+        public string Brand { get; set; } = string.Empty;
         [Required]
-        public Money Discount { get; private set; } = new Money(0);
+        public Money Discount { get; set; } = new Money(0);
         [Required]
-        public Money FullPrice { get; private set; } = new Money(0);
+        public Money FullPrice { get; set; } = new Money(0);
 
         public int CategoryId { get; set; } // Foreign Key
         public Category Category { get; set; } = null!; // Navigation property

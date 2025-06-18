@@ -9,6 +9,7 @@ namespace WebAppMVC.Data
         public DbSet<Item> Products { get; set; }
         public DbSet<Category> Category { get; set; }
         public DbSet<Users> users { get; set; }
+        public DbSet<Roles> Roles { get; set; }
 
         public ShopContext(DbContextOptions options) : base(options)
         {
@@ -23,6 +24,10 @@ namespace WebAppMVC.Data
                 .HasOne(i => i.Category)
                 .WithMany(c => c.Products)
                 .HasForeignKey(i => i.CategoryId);
+            modelBuilder.Entity<Users>()
+                .HasOne(i => i.Role)
+                .WithMany(c => c.Users)
+                .HasForeignKey(i => i.RoleId);
             base.OnModelCreating(modelBuilder);
         }
 

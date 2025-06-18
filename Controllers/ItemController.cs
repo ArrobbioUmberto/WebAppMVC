@@ -4,7 +4,10 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using WebAppMVC.Data;
+using WebAppMVC.Entity;
 using WebAppMVC.Models;
 using WebAppMVC.Models.Services.Application;
 
@@ -14,9 +17,13 @@ namespace WebAppMVC.Controllers
     {
 
         private readonly IItemServices itemServices;
+        private readonly ShopContext _dbContext;
+        private readonly ICategoryServices categoryServices;
 
-        public ItemController(IItemServices itemServices)
+        public ItemController(IItemServices itemServices, ShopContext dbContext, ICategoryServices categoryServices)
         {
+            this.categoryServices = categoryServices;
+            _dbContext = dbContext;
             this.itemServices = itemServices;
         }
 
@@ -46,5 +53,42 @@ namespace WebAppMVC.Controllers
             };
             return View(allItemData);
         }
+
+
+        // SEZIONE CREAZIONE NUOVO PRODOTTO 
+        [HttpGet("/create/product")]
+        public IActionResult Create()
+        {
+            var categories = categoryServices.GetCategories();
+            ViewBag.Categories = categories;
+            return View("Create");
+        }
+        [HttpPost("/create/product")]
+        public IActionResult CreateProduct(Item item)
+        {
+            // var allItem = itemServices.GetItems();
+            Console.WriteLine($"Nome: {item.ProductName}");
+            Console.WriteLine($"Descrizione: {item.Description}");
+            Console.WriteLine($"Brand: {item.Brand}");
+            Console.WriteLine($"FullPrice: {item.FullPrice.Amount}");
+            Console.WriteLine($"Discount: {item.Discount.Amount}");
+            if (item.FullPrice.Amount < item.Discount.Amount)
+            {
+                ModelState.AddModelError("Discount", "Lo sconto non può essere maggiore del prezzo imposto");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Categories = categoryServices.GetCategories();
+                return View("Create", item);  // importante passare il modello per mostrare i valori e gli errori
+            }
+
+
+            _dbContext.Products.Add(item);
+            _dbContext.SaveChanges();
+
+            return RedirectToAction("Detail", "Item", new { id = item.Id });
+        }
+
     }
 }
