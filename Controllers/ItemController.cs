@@ -67,11 +67,12 @@ namespace WebAppMVC.Controllers
         public IActionResult CreateProduct(Item item)
         {
             // var allItem = itemServices.GetItems();
-            Console.WriteLine($"Nome: {item.ProductName}");
-            Console.WriteLine($"Descrizione: {item.Description}");
-            Console.WriteLine($"Brand: {item.Brand}");
-            Console.WriteLine($"FullPrice: {item.FullPrice.Amount}");
-            Console.WriteLine($"Discount: {item.Discount.Amount}");
+            // Console.WriteLine($"Nome: {item.ProductName}");
+            // Console.WriteLine($"Descrizione: {item.Description}");
+            // Console.WriteLine($"Brand: {item.Brand}");
+            // Console.WriteLine($"FullPrice: {item.FullPrice.Amount}");
+            // Console.WriteLine($"Discount: {item.Discount.Amount}");
+            // Console.WriteLine($"String: {item.ProductImageString}");
             if (item.FullPrice.Amount < item.Discount.Amount)
             {
                 ModelState.AddModelError("Discount", "Lo sconto non può essere maggiore del prezzo imposto");
@@ -79,7 +80,20 @@ namespace WebAppMVC.Controllers
 
             if (!ModelState.IsValid)
             {
-                ViewBag.Categories = categoryServices.GetCategories();
+                foreach (var entry in ModelState)
+                {
+                    var key = entry.Key;
+                    var state = entry.Value;
+
+                    Console.WriteLine($"Field: {key}");
+                    foreach (var error in state.Errors)
+                    {
+                        Console.WriteLine($"  Error: {error.ErrorMessage}");
+                    }
+                }
+
+                var categories = categoryServices.GetCategories();
+                ViewBag.Categories = categories;
                 return View("Create", item);  // importante passare il modello per mostrare i valori e gli errori
             }
 

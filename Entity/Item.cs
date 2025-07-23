@@ -26,6 +26,6 @@ namespace WebAppMVC.Entity
         public Money FullPrice { get; set; } = new Money(0);
 
         public int CategoryId { get; set; } // Foreign Key
-        public Category Category { get; set; } = null!; // Navigation property
+        public Category? Category { get; set; } = null; // Navigation property
     }
 }

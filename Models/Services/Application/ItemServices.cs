@@ -21,7 +21,7 @@ namespace WebAppMVC.Models.Services.Application
                 {
                     Id = item.Id,
                     ProductName = item.ProductName,
-                    Category = item.Category.CategoryName,
+                    Category = item.Category!.CategoryName,
                     Brand = item.Brand,
                     Description = item.Description,
                     ProductImageString = item.ProductImageString,
@@ -43,7 +43,7 @@ namespace WebAppMVC.Models.Services.Application
                  {
                      Id = item.Id,
                      ProductName = item.ProductName,
-                     Category = item.Category.CategoryName,
+                     Category = item.Category!.CategoryName,
                      Brand = item.Brand,
                      Description = item.Description,
                      ProductImageString = item.ProductImageString,
